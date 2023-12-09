@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RmxGeo.Domain", "RmxGeo.Domain\RmxGeo.Domain.csproj", "{CE29D61E-5F09-4587-A542-AF9460D32F43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{532F4996-5E0F-4C01-B4B6-1DC187B6D9B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RmxGeo.Domain.Tests", "RmxGeo.Domain.Tests\RmxGeo.Domain.Tests.csproj", "{1CCB858E-4F16-4B53-BCC2-0973BB054A06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE29D61E-5F09-4587-A542-AF9460D32F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE29D61E-5F09-4587-A542-AF9460D32F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE29D61E-5F09-4587-A542-AF9460D32F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE29D61E-5F09-4587-A542-AF9460D32F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CCB858E-4F16-4B53-BCC2-0973BB054A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCB858E-4F16-4B53-BCC2-0973BB054A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCB858E-4F16-4B53-BCC2-0973BB054A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCB858E-4F16-4B53-BCC2-0973BB054A06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1CCB858E-4F16-4B53-BCC2-0973BB054A06} = {532F4996-5E0F-4C01-B4B6-1DC187B6D9B5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9DB298B-5AAE-468B-A6FF-EC95C6B603CE}
+	EndGlobalSection
+EndGlobal
