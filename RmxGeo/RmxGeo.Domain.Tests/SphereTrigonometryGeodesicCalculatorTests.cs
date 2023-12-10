@@ -12,6 +12,8 @@ namespace RmxGeo.Domain.Tests
             GeodesicCalculator = new SphereTrigonometryGeodesicCalculator(EARTH_EQUATOR_RADIUS_M);
         }
 
+        //Reference values were taken from
+        //https://geographiclib.sourceforge.io/cgi-bin/GeodSolve?type=I&input=0%2C+0%2C+0%2C+180&format=g&azi2=f&unroll=r&prec=0&radius=6371000&flattening=0&option=Submit
         [Theory] //lat1, lon1, lat2, lon2, expected_value, tolerance
         [InlineData(53.297975, -6.372663, 41.385101, -81.440440, 5536339)]
         [InlineData(53, -90, 41, 90, 9562764)]
