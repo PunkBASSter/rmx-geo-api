@@ -5,9 +5,9 @@ namespace RmxGeo.Application.CalculateGeodesicLength
     public class GeodesicLengthInputDto
     {
         /// <summary>
-        /// Currently only 2 first points are supported.
+        /// Array of coordinates in format [lat1, lon1, lat2, lon2, ...]
         /// </summary>
-        public GeoPoint[] GeoPoints { get; set; } = new GeoPoint[0];
+        public double[] Coordinates { get; set; } = new double[0];
 
         /// <summary>
         /// Culture name is used to determine distance units.

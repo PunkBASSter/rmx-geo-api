@@ -16,7 +16,7 @@
 
         public static DistanceUnits GetByCulture(string cultureName)
         {
-            if (cultureName.Equals("en-us", StringComparison.CurrentCultureIgnoreCase))
+            if (cultureName.StartsWith("en-us", StringComparison.CurrentCultureIgnoreCase))
                 return DistanceUnits.Miles;
 
             return DistanceUnits.Kilometers;
