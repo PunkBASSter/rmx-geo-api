@@ -17,6 +17,7 @@ namespace RmxGeo.Application.Tests
         {
             _calculatorMock = Substitute.For<IGeodesicCalculator>();
             _calculatorMock.CalcGeodesicM(_pointA, _pointB).Returns(_expectedLengthMeters);
+            _calculatorMock.CalcGeodesicM(_pointB, _pointA).Returns(_expectedLengthMeters);
             _instance = new GetGeodesicLengthUseCase(_calculatorMock);
         }
 
@@ -51,6 +52,23 @@ namespace RmxGeo.Application.Tests
             Assert.Multiple(() =>
             {
                 Assert.Equal(_expectedLengthMeters * 0.001, actual.Length);
+                Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
+            });
+        }
+
+        [Fact]
+        public void MoreThanTwoPointsValidLength()
+        {
+            var input = new GeodesicLengthInputDto
+            {
+                GeoPoints = [_pointA, _pointB, _pointB, _pointA, _pointA]
+            };
+
+            var actual = _instance.GetGeodesicLength(input);
+
+            Assert.Multiple(() =>
+            {
+                Assert.Equal(2 * _expectedLengthMeters * 0.001, actual.Length);
                 Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
             });
         }

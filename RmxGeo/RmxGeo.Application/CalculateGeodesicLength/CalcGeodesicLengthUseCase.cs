@@ -20,7 +20,11 @@ namespace RmxGeo.Application.CalculateGeodesicLength
 
             var totalLengthInMeters = 0.0;
             for (var i = 1; i < points; i++)
-                totalLengthInMeters += _geoCalculator.CalcGeodesicM(options.GeoPoints[i-1], options.GeoPoints[i]);
+            {
+                var currentSegment = _geoCalculator.CalcGeodesicM(options.GeoPoints[i - 1], options.GeoPoints[i]);
+                totalLengthInMeters += currentSegment;
+            }
+                
 
             DistanceUnits distanceUnits = DistanceUnitExtensions.GetByCulture(options.CultureName);
 

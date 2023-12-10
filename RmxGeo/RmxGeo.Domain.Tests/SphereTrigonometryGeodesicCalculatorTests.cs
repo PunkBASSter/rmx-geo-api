@@ -16,9 +16,12 @@ namespace RmxGeo.Domain.Tests
         //https://geographiclib.sourceforge.io/cgi-bin/GeodSolve?type=I&input=0%2C+0%2C+0%2C+180&format=g&azi2=f&unroll=r&prec=0&radius=6371000&flattening=0&option=Submit
         [Theory] //lat1, lon1, lat2, lon2, expected_value, tolerance
         [InlineData(53.297975, -6.372663, 41.385101, -81.440440, 5536339)]
+        [InlineData(41.385101, -81.440440, 53.297975, -6.372663, 5536339)]
         [InlineData(53, -90, 41, 90, 9562764)]
         [InlineData(0, 0, 0, 180, 20015087)]
         [InlineData(0, -90, 0, 90, 20015087)]
+        [InlineData(0, 90, 0, 90, 0)]
+        [InlineData(90, 180, 90, 180, 0)]
         public void ValidInputHasValidResult(params object[] testData)
         {
             var data = testData.Select(Convert.ToDouble).ToArray();
