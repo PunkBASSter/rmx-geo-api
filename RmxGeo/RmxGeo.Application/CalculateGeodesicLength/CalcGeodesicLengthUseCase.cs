@@ -22,7 +22,7 @@ namespace RmxGeo.Application.CalculateGeodesicLength
             for (var i = 1; i < points; i++)
                 totalLengthInMeters += _geoCalculator.CalcGeodesicM(options.GeoPoints[i-1], options.GeoPoints[i]);
 
-            DistanceUnits distanceUnits = DistanceUnitExtensions.GetByCulture(options.CultutreName);
+            DistanceUnits distanceUnits = DistanceUnitExtensions.GetByCulture(options.CultureName);
 
             return new GeodesicLengthResultDto()
             {

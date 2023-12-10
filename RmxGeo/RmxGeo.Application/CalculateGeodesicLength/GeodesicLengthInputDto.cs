@@ -12,6 +12,6 @@ namespace RmxGeo.Application.CalculateGeodesicLength
         /// <summary>
         /// Culture name is used to determine distance units.
         /// </summary>
-        public string CultutreName { get; set; } = string.Empty;
+        public string CultureName { get; set; } = string.Empty;
     }
 }
