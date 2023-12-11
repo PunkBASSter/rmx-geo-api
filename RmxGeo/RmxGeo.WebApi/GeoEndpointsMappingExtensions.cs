@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RmxGeo.Application.CalculateGeodesicLength;
+using System.Globalization;
 
 namespace RmxGeo.WebApi;
 
@@ -12,9 +13,10 @@ public static class GeoEndpointsMappingExtensions
             string? culture,
             [FromHeader(Name = "Accept-Language")] string? acceptLanguage) =>
         {
+            var coords = coordinates.Split([',', ';']).Select(x => double.Parse(x.Trim(), CultureInfo.InvariantCulture)).ToArray();
             GeodesicLengthResultDto res = await getGeodesicLengthUseCase.GetGeodesicLengthAsync(new GeodesicLengthInputDto()
             {
-                Coordinates = [.. coordinates.Split([',', ';']).Select(x => Convert.ToDouble(x.Trim()))],
+                Coordinates = coords,
                 CultureName = culture ?? acceptLanguage ?? string.Empty
             });
 
