@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RmxGeo.Application", "RmxGe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RmxGeo.Application.Tests", "RmxGeo.Application.Tests\RmxGeo.Application.Tests.csproj", "{E07AE677-F06A-4F62-9DBA-DB34B170A9D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RmxGeo.WebApi", "RmxGeo.WebApi\RmxGeo.WebApi.csproj", "{528F71A9-646F-4E67-B01D-0004FD729575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RmxGeo.WebApi", "RmxGeo.WebApi\RmxGeo.WebApi.csproj", "{528F71A9-646F-4E67-B01D-0004FD729575}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
