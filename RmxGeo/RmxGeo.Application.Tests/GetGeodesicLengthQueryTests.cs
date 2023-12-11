@@ -5,20 +5,22 @@ using RmxGeo.Domain;
 
 namespace RmxGeo.Application.Tests
 {
-    public class CalcGeodesicLengthTests
+    public class GetGeodesicLengthQueryTests
     {
+        private readonly GeoPoint A = new(53.297975, -6.372663);
+        private readonly GeoPoint B = new(41.385101, -81.440440);
+
         private readonly IGeodesicCalculator _calculatorMock;
-        private readonly GetGeodesicLengthUseCase _instance;
-        private readonly GeoPoint _pointA = new(53.297975, -6.372663);
-        private readonly GeoPoint _pointB = new(41.385101, -81.440440);
+        private readonly GetGeodesicLengthQuery _instance;
+        
         private readonly double _expectedLengthMeters = 5536339;
 
-        public CalcGeodesicLengthTests()
+        public GetGeodesicLengthQueryTests()
         {
             _calculatorMock = Substitute.For<IGeodesicCalculator>();
-            _calculatorMock.CalcGeodesicM(_pointA, _pointB).Returns(_expectedLengthMeters);
-            _calculatorMock.CalcGeodesicM(_pointB, _pointA).Returns(_expectedLengthMeters);
-            _instance = new GetGeodesicLengthUseCase(_calculatorMock);
+            _calculatorMock.CalcGeodesicM(A, B).Returns(_expectedLengthMeters);
+            _calculatorMock.CalcGeodesicM(B, A).Returns(_expectedLengthMeters);
+            _instance = new GetGeodesicLengthQuery(_calculatorMock);
         }
 
         [Fact]
@@ -26,8 +28,8 @@ namespace RmxGeo.Application.Tests
         {
             var input = new GeodesicLengthInputDto
             {
-                Coordinates = [ _pointA.Latitude, _pointA.Longitude, _pointB.Latitude, _pointB.Longitude ],
-                CultureName = "en-US"
+                Coordinates = [ A.Latitude, A.Longitude, B.Latitude, B.Longitude],
+                CultureName = "en-US,en"
             };
 
             var actual = _instance.GetGeodesicLength(input);
@@ -44,7 +46,8 @@ namespace RmxGeo.Application.Tests
         {
             var input = new GeodesicLengthInputDto
             {
-                Coordinates = [_pointA.Latitude, _pointA.Longitude, _pointB.Latitude, _pointB.Longitude]
+                Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude],
+                CultureName = "en-GB,en"
             };
 
             var actual = _instance.GetGeodesicLength(input);
@@ -61,8 +64,8 @@ namespace RmxGeo.Application.Tests
         {
             var input = new GeodesicLengthInputDto
             {
-                Coordinates = [_pointA.Latitude, _pointA.Longitude, _pointB.Latitude, _pointB.Longitude,
-                    _pointB.Latitude, _pointB.Longitude,  _pointA.Latitude, _pointA.Longitude]
+                Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude,
+                    B.Latitude, B.Longitude,  A.Latitude, A.Longitude]
             };
 
             var actual = _instance.GetGeodesicLength(input);

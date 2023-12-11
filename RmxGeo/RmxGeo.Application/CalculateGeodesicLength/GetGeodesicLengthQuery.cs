@@ -3,11 +3,11 @@ using RmxGeo.Domain;
 
 namespace RmxGeo.Application.CalculateGeodesicLength
 {
-    public sealed class GetGeodesicLengthUseCase
+    public sealed class GetGeodesicLengthQuery
     {
         private readonly IGeodesicCalculator _geoCalculator;
 
-        public GetGeodesicLengthUseCase(IGeodesicCalculator geoCalculator)
+        public GetGeodesicLengthQuery(IGeodesicCalculator geoCalculator)
         {
             _geoCalculator = geoCalculator;
         }

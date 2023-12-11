@@ -7,7 +7,7 @@ public static class GeoEndpointsMappingExtensions
 {
     public static RouteHandlerBuilder MapGetGeodesicLengthEndpoint(this WebApplication app)
     {
-        return app.MapGet("/geodesic/length", async ([FromServices] GetGeodesicLengthUseCase getGeodesicLengthUseCase,
+        return app.MapGet("/geodesic/length", async ([FromServices] GetGeodesicLengthQuery getGeodesicLengthUseCase,
             string coordinates,
             string? culture,
             [FromHeader(Name = "Accept-Language")] string? acceptLanguage) =>

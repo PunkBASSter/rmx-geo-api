@@ -10,7 +10,7 @@ namespace RmxGeo.Application
     {
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<GetGeodesicLengthUseCase>();
+            services.AddScoped<GetGeodesicLengthQuery>();
 
             var geoCalculatorSettings = new SphereTrigonometryGeodesicCalculatorOptions();
             configuration.GetSection("SphereTrigonometryGeodesicCalculatorOptions").Bind(geoCalculatorSettings);
