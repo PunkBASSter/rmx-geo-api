@@ -1,13 +1,16 @@
-﻿namespace RmxGeo.Domain
+﻿namespace RmxGeo.Domain.SphereTrigonometry
 {
+    /// <summary>
+    /// Geodesic calculation strategy based on spherical trigonometry.
+    /// </summary>
     public sealed class SphereTrigonometryGeodesicCalculator : IGeodesicCalculator
     {
         public double RadiusM { get; init; }
         private double DegToRad(double angle) => Math.PI * angle / 180.0;
 
-        public SphereTrigonometryGeodesicCalculator(double radiusM)
+        public SphereTrigonometryGeodesicCalculator(SphereTrigonometryGeodesicCalculatorOptions settings)
         {
-            RadiusM = radiusM;
+            RadiusM = settings.RadiusMeters;
         }
 
         public double CalcGeodesicRad(GeoPoint pointA, GeoPoint pointB)

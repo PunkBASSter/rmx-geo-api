@@ -16,7 +16,7 @@ namespace RmxGeo.Application.CalculateGeodesicLength
         {
             var geoPoints = ParseCoordinates(options.Coordinates);
             if (geoPoints.Length < 2)
-                throw new ArgumentException($"At least 2 geo points are expected, but {geoPoints.Length} given.");
+                throw new InvalidInputException($"At least 2 geo points are expected, but {geoPoints.Length} given.");
 
             var totalLengthInMeters = 0.0;
             for (var i = 1; i < geoPoints.Length; i++)
@@ -39,7 +39,7 @@ namespace RmxGeo.Application.CalculateGeodesicLength
         private static GeoPoint[] ParseCoordinates(double[] coordinates)
         {
             if (coordinates.Length % 2 != 0)
-                throw new ArgumentException("Coordinates array must contain even number of elements.");
+                throw new InvalidInputException("Coordinates array must contain even number of elements.");
 
             var points = coordinates.Length / 2;
             var geoPoints = new GeoPoint[points];

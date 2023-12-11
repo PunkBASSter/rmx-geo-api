@@ -1,3 +1,5 @@
+using RmxGeo.Domain.SphereTrigonometry;
+
 namespace RmxGeo.Domain.Tests
 {
     public class SphereTrigonometryGeodesicCalculatorTests
@@ -9,7 +11,11 @@ namespace RmxGeo.Domain.Tests
 
         public SphereTrigonometryGeodesicCalculatorTests()
         {
-            GeodesicCalculator = new SphereTrigonometryGeodesicCalculator(EARTH_EQUATOR_RADIUS_M);
+            var settings = new SphereTrigonometryGeodesicCalculatorOptions
+            {
+                RadiusMeters = EARTH_EQUATOR_RADIUS_M
+            };
+            GeodesicCalculator = new SphereTrigonometryGeodesicCalculator(settings);
         }
 
         //Reference values were taken from
