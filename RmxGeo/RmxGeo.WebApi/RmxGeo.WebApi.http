@@ -1,6 +1,11 @@
 @RmxGeo.WebApi_HostAddress = http://localhost:5138
 
-GET {{RmxGeo.WebApi_HostAddress}}/weatherforecast/
+GET {{RmxGeo.WebApi_HostAddress}}/geodesic/length?coordinates=53.297975,-6.372663,41.385101,-81.440440&culture=en-US
+Accept: application/json
+
+###
+
+GET {{RmxGeo.WebApi_HostAddress}}/geodesic/length?coordinates=53.297975,-6.372663,41.385101,-81.440440&culture
 Accept: application/json
 
 ###
