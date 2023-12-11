@@ -1,9 +1,8 @@
-﻿namespace RmxGeo.Application.Localization
+﻿namespace RmxGeo.Application.Localization;
+
+public enum DistanceUnits
 {
-    public enum DistanceUnits
-    {
-        Meters,
-        Kilometers,
-        Miles
-    }
+    Meters,
+    Kilometers,
+    Miles
 }

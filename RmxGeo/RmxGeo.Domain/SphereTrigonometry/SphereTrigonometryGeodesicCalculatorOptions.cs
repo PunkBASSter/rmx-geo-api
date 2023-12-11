@@ -1,7 +1,6 @@
-﻿namespace RmxGeo.Domain.SphereTrigonometry
+﻿namespace RmxGeo.Domain.SphereTrigonometry;
+
+public class SphereTrigonometryGeodesicCalculatorOptions
 {
-    public class SphereTrigonometryGeodesicCalculatorOptions
-    {
-        public double RadiusMeters { get; set; }
-    }
+    public double RadiusMeters { get; set; }
 }

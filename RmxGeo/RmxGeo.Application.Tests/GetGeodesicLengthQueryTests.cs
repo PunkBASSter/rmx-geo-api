@@ -3,78 +3,77 @@ using RmxGeo.Application.CalculateGeodesicLength;
 using RmxGeo.Application.Localization;
 using RmxGeo.Domain;
 
-namespace RmxGeo.Application.Tests
+namespace RmxGeo.Application.Tests;
+
+public class GetGeodesicLengthQueryTests
 {
-    public class GetGeodesicLengthQueryTests
+    private readonly GeoPoint A = new(53.297975, -6.372663);
+    private readonly GeoPoint B = new(41.385101, -81.440440);
+
+    private readonly IGeodesicCalculator _calculatorMock;
+    private readonly GetGeodesicLengthQuery _instance;
+    
+    private readonly double _expectedLengthMeters = 5536339;
+
+    public GetGeodesicLengthQueryTests()
     {
-        private readonly GeoPoint A = new(53.297975, -6.372663);
-        private readonly GeoPoint B = new(41.385101, -81.440440);
+        _calculatorMock = Substitute.For<IGeodesicCalculator>();
+        _calculatorMock.CalcGeodesicM(A, B).Returns(_expectedLengthMeters);
+        _calculatorMock.CalcGeodesicM(B, A).Returns(_expectedLengthMeters);
+        _instance = new GetGeodesicLengthQuery(_calculatorMock);
+    }
 
-        private readonly IGeodesicCalculator _calculatorMock;
-        private readonly GetGeodesicLengthQuery _instance;
-        
-        private readonly double _expectedLengthMeters = 5536339;
-
-        public GetGeodesicLengthQueryTests()
+    [Fact]
+    public async Task EnUS_Culture_Result_In_Miles()
+    {
+        var input = new GeodesicLengthInputDto
         {
-            _calculatorMock = Substitute.For<IGeodesicCalculator>();
-            _calculatorMock.CalcGeodesicM(A, B).Returns(_expectedLengthMeters);
-            _calculatorMock.CalcGeodesicM(B, A).Returns(_expectedLengthMeters);
-            _instance = new GetGeodesicLengthQuery(_calculatorMock);
-        }
+            Coordinates = [ A.Latitude, A.Longitude, B.Latitude, B.Longitude],
+            CultureName = "en-US,en"
+        };
 
-        [Fact]
-        public void EnUS_Culture_Result_In_Miles()
+        var actual = await _instance.GetGeodesicLengthAsync(input);
+
+        Assert.Multiple(() =>
         {
-            var input = new GeodesicLengthInputDto
-            {
-                Coordinates = [ A.Latitude, A.Longitude, B.Latitude, B.Longitude],
-                CultureName = "en-US,en"
-            };
+            Assert.Equal(_expectedLengthMeters * 0.000621371, actual.Length);
+            Assert.Equal(DistanceUnits.Miles.ToString(), actual.Units);
+        });
+    }
 
-            var actual = _instance.GetGeodesicLength(input);
-
-            Assert.Multiple(() =>
-            {
-                Assert.Equal(_expectedLengthMeters * 0.000621371, actual.Length);
-                Assert.Equal(DistanceUnits.Miles.ToString(), actual.Units);
-            });
-        }
-
-        [Fact]
-        public void Default_Culture_Result_In_Kilometers()
+    [Fact]
+    public async Task Default_Culture_Result_In_Kilometers()
+    {
+        var input = new GeodesicLengthInputDto
         {
-            var input = new GeodesicLengthInputDto
-            {
-                Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude],
-                CultureName = "en-GB,en"
-            };
+            Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude],
+            CultureName = "en-GB,en"
+        };
 
-            var actual = _instance.GetGeodesicLength(input);
+        var actual = await _instance.GetGeodesicLengthAsync(input);
 
-            Assert.Multiple(() =>
-            {
-                Assert.Equal(_expectedLengthMeters * 0.001, actual.Length);
-                Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
-            });
-        }
-
-        [Fact]
-        public void MoreThanTwoPointsValidLength()
+        Assert.Multiple(() =>
         {
-            var input = new GeodesicLengthInputDto
-            {
-                Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude,
-                    B.Latitude, B.Longitude,  A.Latitude, A.Longitude]
-            };
+            Assert.Equal(_expectedLengthMeters * 0.001, actual.Length);
+            Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
+        });
+    }
 
-            var actual = _instance.GetGeodesicLength(input);
+    [Fact]
+    public async Task MoreThanTwoPointsValidLength()
+    {
+        var input = new GeodesicLengthInputDto
+        {
+            Coordinates = [A.Latitude, A.Longitude, B.Latitude, B.Longitude,
+                B.Latitude, B.Longitude,  A.Latitude, A.Longitude]
+        };
 
-            Assert.Multiple(() =>
-            {
-                Assert.Equal(2 * _expectedLengthMeters * 0.001, actual.Length);
-                Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
-            });
-        }
+        var actual = await _instance.GetGeodesicLengthAsync(input);
+
+        Assert.Multiple(() =>
+        {
+            Assert.Equal(2 * _expectedLengthMeters * 0.001, actual.Length);
+            Assert.Equal(DistanceUnits.Kilometers.ToString(), actual.Units);
+        });
     }
 }
