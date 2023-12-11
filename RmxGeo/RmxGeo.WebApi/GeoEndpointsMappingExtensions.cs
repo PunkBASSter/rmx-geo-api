@@ -14,11 +14,12 @@ public static class GeoEndpointsMappingExtensions
         {
             GeodesicLengthResultDto res = await getGeodesicLengthUseCase.GetGeodesicLengthAsync(new GeodesicLengthInputDto()
             {
-                Coordinates = coordinates.Split([',', ';']).Select(x => Convert.ToDouble(x)).ToArray(),
+                Coordinates = [.. coordinates.Split([',', ';']).Select(x => Convert.ToDouble(x.Trim()))],
                 CultureName = culture ?? acceptLanguage ?? string.Empty
             });
 
             return Results.Ok(res);
-        }).Produces<GeodesicLengthResultDto>();
+        })
+        .Produces<GeodesicLengthResultDto>();
     }
 }

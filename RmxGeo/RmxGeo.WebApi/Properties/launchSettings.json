@@ -13,7 +13,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "geodesic/length?coordinates=53.297975,-6.372663,41.385101,-81.440440&culture=en-US",
       "applicationUrl": "http://localhost:5138",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -23,7 +23,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "geodesic/length?coordinates=53.297975,-6.372663,41.385101,-81.44044&culture=en-US",
       "applicationUrl": "https://localhost:7181;http://localhost:5138",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -32,7 +32,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "geodesic/length?coordinates=53.297975,-6.372663,41.385101,-81.440440&culture=en-US",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
